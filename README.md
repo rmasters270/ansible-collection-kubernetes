@@ -1,5 +1,7 @@
 # Kubernetes
 
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-rmasters270.kubernetes-blue.svg)](https://galaxy.ansible.com/rmasters270/kubernetes)
+
 ## About
 
 A group of roles used to deploy and configure various containers on a Kubernetes cluster.
