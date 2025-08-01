@@ -1,0 +1,29 @@
+---
+
+namespace: rmasters270
+name: kubernetes
+version: 1.0.0
+readme: README.md
+authors:
+  - Ryan Masters
+description: A collection of Ansible roles to deploy Kubernetes workloads.
+license_file: 'LICENSE'
+tags:
+  - application
+  - cloud
+  - infrastructure
+  - networking
+  - storage
+  - kubernetes
+  - k3s
+  - helm
+dependencies:
+  community.general: '>=10.7.0'
+  kubernetes.core: '>=5.3.0'
+repository: https://github.com/rmasters270/ansible-collection-kubernetes
+issues: https://github.com/rmasters270/ansible-collection-kubernetes/issues
+build_ignore:
+  - .gitignore
+  - .vscode
+  - .DS_Store
+  - .pre-commit-config.yaml

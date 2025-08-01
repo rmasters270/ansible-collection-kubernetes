@@ -1,0 +1,19 @@
+---
+
+traefik_namespace: traefik
+traefik_repo_name: traefik
+traefik_repo_url: https://helm.traefik.io/traefik
+traefik_repo_version: 20.5.0
+
+traefik_pods: 1
+traefik_hostname: 'traefik.{{ ansible_domain }}'
+# traefik_loadbalancer_ip: 169.254.0.2
+traefik_log_level: error
+
+traefik_web_user: kangoroo
+traefik_web_password: jack
+traefik_web_salt: 65534
+
+traefik_default_cert_issuer: selfsigned-issuer
+traefik_default_cert_issuer_kind: ClusterIssuer
+traefik_default_cert_dnsname: '*.{{ ansible_domain }}'

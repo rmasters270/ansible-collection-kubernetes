@@ -1,0 +1,6 @@
+---
+
+- name: Install Helm Homebrew packages for MacOSX
+  community.general.homebrew:
+    name: kubernetes-cli,helm
+    update_homebrew: true

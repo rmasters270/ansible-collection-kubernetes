@@ -1,0 +1,4 @@
+---
+
+ddclient_namespace: ddclient
+ddclient_image_tag: v3.11.2-ls177

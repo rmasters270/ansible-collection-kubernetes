@@ -1,0 +1,15 @@
+---
+
+# wireguard, ddclient, and cert_manager defaults
+
+timezone: Etc/UTC
+
+letsencrypt_email: user@domain.tld
+
+cloudflare_email: user@domain.tld
+cloudflare_key: Your-Cloudflare-APIKey
+cloudflare_zones:
+  domain.tld:
+    fqdn: domain.tld,www.domain.tld
+  domain2.tld:
+    fqdn: my.domain2.tld

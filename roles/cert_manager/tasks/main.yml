@@ -1,0 +1,42 @@
+---
+
+- name: Load shared defaults
+  ansible.builtin.include_vars: '{{ role_path }}/../common_defaults/main.yml'
+
+- name: Add Cert Manager repository
+  kubernetes.core.helm_repository:
+    name: '{{ cert_manager_repo_name }}'
+    repo_url: '{{ cert_manager_repo_url }}'
+
+- name: Install Cert Manager
+  kubernetes.core.helm:
+    name: cert-manager
+    chart_ref: jetstack/cert-manager
+    chart_version: '{{ cert_manager_repo_version }}'
+    release_namespace: cert-manager
+    create_namespace: true
+    update_repo_cache: true
+    values:
+      installCRDs: true
+
+- name: Create self-signed cluster issuer
+  kubernetes.core.k8s:
+    template: self-clusterissuer.yaml.j2
+
+- name: Create Cloudflare API key secret
+  kubernetes.core.k8s:
+    template: cloudflare-secret.yaml.j2
+
+- name: Create Lets Encrypt production cluster issuer with Cloudflare credentials
+  kubernetes.core.k8s:
+    template: acme-clusterissuer.yaml.j2
+  vars:
+    _cluster_issuer_name: '{{ cert_manager_issuer.prod.cluster_issuer }}'
+    _cert_issuer_server: '{{ cert_manager_issuer.prod.server }}'
+
+- name: Create Lets Encrypt staging cluster issuer with Cloudflare credentials
+  kubernetes.core.k8s:
+    template: acme-clusterissuer.yaml.j2
+  vars:
+    _cluster_issuer_name: '{{ cert_manager_issuer.staging.cluster_issuer }}'
+    _cert_issuer_server: '{{ cert_manager_issuer.staging.server }}'
